@@ -1,0 +1,38 @@
+<div class="todos bg-white">
+    <div class="todos__list">
+        <div class="todo__item" *ngFor="let todo of todos let i=index">
+            <h2 *ngIf="!todo.editing; else editingTodo" class="todo__name" [ngClass]="{'completed' : todo.completed}"
+                (dblclick)="editTodo(todo)">
+                {{todo.name}}
+            </h2>
+
+            <ng-template #editingTodo>
+                <input id="editInput" type="text" name="todo-edit-item" class="todo-edit" [(ngModel)]="todo.name"
+                    (blur)="doneEdit(todo)" (keyup.enter)="doneEdit(todo)" (keyup.esc)="cancelEdit(todo)" />
+            </ng-template>
+
+            <div class="round">
+                <input [id]='"todoComplete-" + i' class="todo__action" type="checkbox" [(ngModel)]="todo.completed" />
+                <label [for]='"todoComplete-" + i'></label>
+            </div>
+            <button class="remove-item" (click)="deleteTodo(todo.id)">
+                &times;
+            </button>
+        </div>
+    </div>
+    <div class="new-todos">
+        <button class="add__new" (click)="showPopup()">+</button>
+    </div>
+</div>
+
+
+
+<div *ngIf="modalPopup" id="open-modal" class="modal-popup">
+    <div>
+        <a href="#" title="Close" class="modal-close" (click)="hidePopup()">Close</a>
+        <h1>Add New Todo</h1>
+        <input class="add-todo-input" type="text" name="add-todo" placeholder="Add new todo..." [(ngModel)]="todoTitle"
+            (keyup.enter)="addTodo()" autofocus />
+        <button class="add-btn" (click)="addTodo();">Add New</button>
+    </div>
+</div>

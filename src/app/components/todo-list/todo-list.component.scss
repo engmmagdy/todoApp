@@ -1,0 +1,287 @@
+.todos {
+    box-shadow: -1px 2px 20px 4px #efefef;
+    position: relative;
+    padding: 2rem 0 4rem;
+
+    .todos__list {
+        padding: var(--todo-body-padding);
+    }
+
+    .todo__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1.5rem;
+
+
+
+        h2 {
+            font-size: var(--todo-body-padding);
+            font-family: var(--font-family);
+            color: var(--primary-color);
+            width: 80%;
+            cursor: default;
+            line-height: 1.7;
+
+            &.completed {
+                color: #ccc;
+            }
+        }
+
+        &:hover {
+            .remove-item {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+
+    .todo-edit {
+        padding: 0.6rem 0;
+        width: 80%;
+        font-size: 1rem;
+        border: 0;
+        border-bottom: 2px solid #0366d6;
+        outline: none;
+    }
+
+}
+
+
+.round {
+    position: relative;
+
+    label {
+        background-color: #fff;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        cursor: pointer;
+        height: 20px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 20px;
+
+        &:after {
+            border: 2px solid #50e3a4;
+            border-top: none;
+            border-right: none;
+            content: "";
+            height: 4px;
+            left: 5px;
+            opacity: 0;
+            position: absolute;
+            top: 6px;
+            transform: rotate(-45deg);
+            width: 9px;
+        }
+    }
+
+    input[type="checkbox"] {
+        visibility: hidden;
+    }
+
+    input[type="checkbox"]:checked+label {
+        background-color: transparent;
+        border-color: #50e3a4;
+        border-width: 2px;
+    }
+
+    input[type="checkbox"]:checked+label:after {
+        opacity: 1;
+    }
+
+}
+
+
+.remove-item {
+    background: transparent;
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    border: none;
+    cursor: pointer;
+    visibility: hidden;
+    font-family: serif;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+        color: red;
+    }
+}
+
+.new-todos {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    bottom: -35px;
+
+    .add__new {
+        border: 0;
+        background-color: #50e3a4;
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 2rem;
+        font-family: serif;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+
+        }
+    }
+}
+
+
+.modal-popup {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.50);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s;
+
+    &>div {
+
+        width: 650px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 2rem;
+        background: #ffffff;
+        z-index: 99;
+    }
+
+    h1 {
+        font-size: 120%;
+        margin: 0 0 30px;
+        border-bottom: 1px solid #f7f7f7;
+        padding-bottom: 15px;
+    }
+}
+
+.modal-close {
+    color: #aaa;
+    line-height: 50px;
+    font-size: 80%;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 70px;
+    text-decoration: none;
+
+    &:hover {
+        color: black;
+    }
+}
+
+
+.add-todo-input {
+    border: 1px solid #d1d2d5;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bolder;
+    width: 80%;
+    margin-right: 10px;
+}
+
+.add-btn {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    padding: 0 16px;
+    min-width: 64px;
+    height: 36px;
+    vertical-align: middle;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
+    background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    font-family: var(--pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 36px;
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+
+    &::-moz-focus-inner {
+        border: none;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        border-radius: 50%;
+        padding: 50%;
+        width: 32px;
+        /* Safari */
+        height: 32px;
+        /* Safari */
+        background-color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+        transition: opacity 1s, transform 0.5s;
+    }
+
+    &:hover,
+    &:focus {
+        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    &:hover {
+        &::before {
+            opacity: 0.08;
+        }
+    }
+
+    &:active {
+        box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+        &::after {
+            opacity: 0.32;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0s;
+        }
+    }
+
+}
+
+
+.add-btn:hover .add-btn:focus::before {
+    opacity: 0.24;
+}
+
+.add-btn:hover:focus::before {
+    opacity: 0.3;
+}
