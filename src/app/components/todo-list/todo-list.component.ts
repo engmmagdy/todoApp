@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Todo } from '../../interface/todo';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,9 +14,9 @@ export class TodoListComponent implements OnInit {
   todoId: number;
   modalPopup: boolean;
   beforeEditCach: string;
+  validInput: FormGroup;
 
-
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.beforeEditCach = '';
@@ -25,7 +26,23 @@ export class TodoListComponent implements OnInit {
     this.apiService.getTodoList().subscribe((oDataResult) => {
       this.todos = oDataResult.todos;
     });
+    this.initForm();
+  }
 
+
+  initForm(): void {
+    this.validInput = this.fb.group({
+      todoName: [' ', Validators.required],
+    });
+  }
+
+  isValidInput(fieldName): boolean {
+    return this.validInput.controls[fieldName].invalid &&
+      (this.validInput.controls[fieldName].dirty || this.validInput.controls[fieldName].touched);
+  }
+
+  addTodoValid(): void {
+    console.log(this.validInput.value);
   }
 
 
@@ -74,6 +91,10 @@ export class TodoListComponent implements OnInit {
 
   hidePopup(): void {
     this.modalPopup = false;
+    this.todoTitle = '';
+    this.validInput = this.fb.group({
+      todoName: [' '],
+    });
   }
 
 

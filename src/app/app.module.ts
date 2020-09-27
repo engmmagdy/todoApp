@@ -5,18 +5,22 @@ import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AutoFocusDirective } from './directive/auto-focus.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoListComponent
+    TodoListComponent,
+    AutoFocusDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
