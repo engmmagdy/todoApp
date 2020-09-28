@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { Todo } from '../../interface/todo';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { APIService } from '../../services/api/api.service';
+import { Todo } from '../../interface/todo';
 
 @Component({
   selector: 'app-todo-list',
@@ -16,7 +16,7 @@ export class TodoListComponent implements OnInit {
   beforeEditCach: string;
   validInput: FormGroup;
 
-  constructor(private apiService: ApiService, private fb: FormBuilder) { }
+  constructor(private apiService: APIService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.beforeEditCach = '';
@@ -25,6 +25,7 @@ export class TodoListComponent implements OnInit {
     this.modalPopup = false;
     this.apiService.getTodoList().subscribe((oDataResult) => {
       this.todos = oDataResult.todos;
+      // console.log(oDataResult.todos);
     });
     this.initForm();
   }

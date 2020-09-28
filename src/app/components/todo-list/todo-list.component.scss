@@ -7,110 +7,8 @@
         padding: var(--todo-body-padding);
     }
 
-    .todo__item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-bottom: 1.5rem;
+   
 
-
-
-        h2 {
-            font-size: var(--todo-body-padding);
-            font-family: var(--font-family);
-            color: var(--primary-color);
-            width: 80%;
-            cursor: default;
-            line-height: 1.7;
-
-            &.completed {
-                color: #ccc;
-            }
-        }
-
-        &:hover {
-            .remove-item {
-                visibility: visible;
-                opacity: 1;
-            }
-        }
-    }
-
-    .todo-edit {
-        padding: 0.6rem 0;
-        width: 80%;
-        font-size: 1rem;
-        border: 0;
-        border-bottom: 2px solid #0366d6;
-        outline: none;
-    }
-
-}
-
-
-.round {
-    position: relative;
-
-    label {
-        background-color: #fff;
-        border: 2px solid #ccc;
-        border-radius: 50%;
-        cursor: pointer;
-        height: 20px;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 20px;
-
-        &:after {
-            border: 2px solid #50e3a4;
-            border-top: none;
-            border-right: none;
-            content: "";
-            height: 4px;
-            left: 5px;
-            opacity: 0;
-            position: absolute;
-            top: 6px;
-            transform: rotate(-45deg);
-            width: 9px;
-        }
-    }
-
-    input[type="checkbox"] {
-        visibility: hidden;
-    }
-
-    input[type="checkbox"]:checked+label {
-        background-color: transparent;
-        border-color: #50e3a4;
-        border-width: 2px;
-    }
-
-    input[type="checkbox"]:checked+label:after {
-        opacity: 1;
-    }
-
-}
-
-
-.remove-item {
-    background: transparent;
-    color: var(--primary-color);
-    font-size: 1.6rem;
-    border: none;
-    cursor: pointer;
-    visibility: hidden;
-    font-family: serif;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    -webkit-transition: opacity 0.3s ease-in-out;
-    -moz-transition: opacity 0.3s ease-in-out;
-    -ms-transition: opacity 0.3s ease-in-out;
-
-    &:hover {
-        color: red;
-    }
 }
 
 .new-todos {
@@ -296,6 +194,13 @@
 .alert.alert-danger {
     color: #CD0202;
     padding-top: 15px;
+}
+
+.add-form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 

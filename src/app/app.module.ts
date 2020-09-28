@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AutoFocusDirective } from './directive/auto-focus.directive';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
-    AutoFocusDirective
+    AutoFocusDirective,
+    TodoItemComponent
   ],
   imports: [
     BrowserModule,
