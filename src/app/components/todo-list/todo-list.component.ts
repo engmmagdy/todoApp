@@ -25,11 +25,23 @@ export class TodoListComponent implements OnInit {
     this.modalPopup = false;
     this.apiService.getTodoList().subscribe((oDataResult) => {
       this.todos = oDataResult.todos;
-      // console.log(oDataResult.todos);
+      this.getLocalStorageTodo();
     });
     this.initForm();
+    console.log();
+
   }
 
+  getLocalStorageTodo(): void {
+    if (localStorage.getItem('todos') !== null) {
+      this.todos = JSON.parse(localStorage.getItem('todos'));
+    }
+  }
+  setLocalStorage(): void {
+    localStorage.setItem('todos',
+      JSON.stringify(this.todos)
+    );
+  }
 
   initForm(): void {
     this.validInput = this.fb.group({
@@ -48,6 +60,7 @@ export class TodoListComponent implements OnInit {
 
 
 
+
   addTodo(): void {
     if (this.todoTitle.trim().length === 0) {
       return;
@@ -62,19 +75,23 @@ export class TodoListComponent implements OnInit {
     this.todoTitle = '';
     this.todoId++;
     this.modalPopup = false;
+    this.setLocalStorage();
   }
 
 
   editTodo(todo: Todo): void {
     this.beforeEditCach = todo.name;
     todo.editing = true;
+    this.setLocalStorage();
   }
+
 
   doneEdit(todo: Todo): void {
     if (todo.name.trim().length === 0) {
       todo.name = this.beforeEditCach;
     }
     todo.editing = false;
+    this.setLocalStorage();
   }
 
   cancelEdit(todo: Todo): void {
@@ -84,6 +101,7 @@ export class TodoListComponent implements OnInit {
 
   deleteTodo(id: number): void {
     this.todos = this.todos.filter(todo => todo.id !== id);
+    this.setLocalStorage();
   }
 
   showPopup(): void {
@@ -97,6 +115,8 @@ export class TodoListComponent implements OnInit {
       todoName: [' '],
     });
   }
+
+
 
 
 }

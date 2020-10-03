@@ -10,7 +10,7 @@
     </ng-template>
 
     <div class="round">
-        <input [id]='"todoComplete-" + index' class="todo__action" type="checkbox" [(ngModel)]="todo.complete" />
+        <input [id]='"todoComplete-" + index' class="todo__action" type="checkbox" [(ngModel)]="todo.complete" (change)="doneEdit(todo)" />
         <label [for]='"todoComplete-" + index'></label>
     </div>
 

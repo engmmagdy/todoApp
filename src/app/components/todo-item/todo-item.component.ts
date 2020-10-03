@@ -7,7 +7,6 @@ import { Todo } from '../../interface/todo';
   styleUrls: ['./todo-item.component.scss']
 })
 export class TodoItemComponent implements OnInit {
-
   @Input() todo: Todo;
   @Input() index: number;
 
@@ -18,7 +17,15 @@ export class TodoItemComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit(): void {
+  }
+
+
+  setLocalStorage(): void {
+    localStorage.setItem('todos',
+      JSON.stringify(this.todo.complete)
+    );
   }
 
   doneEdit(todo: Todo): void {

@@ -23,6 +23,7 @@
     "@ngx-translate/core": "^13.0.0",
     "angular-autofocus-fix": "^0.1.2",
     "ngx-autofocus-fix": "^1.0.4",
+    "ngx-webstorage-service": "^4.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",
