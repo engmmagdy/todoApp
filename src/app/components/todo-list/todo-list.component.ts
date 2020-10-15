@@ -28,8 +28,6 @@ export class TodoListComponent implements OnInit {
       this.getLocalStorageTodo();
     });
     this.initForm();
-    console.log();
-
   }
 
   getLocalStorageTodo(): void {
