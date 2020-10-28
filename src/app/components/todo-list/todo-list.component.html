@@ -1,15 +1,13 @@
-<div class="todos bg-white"> 
-    <div class="todos__list">
+<div class="switch">
+    <input type="checkbox" id="rtl" class="switch__input" (click)="directionCheck($event)">
+    <label for="rtl" class="switch__label">RTL</label>
+</div>
 
-       <app-todo-item 
-            *ngFor="let todo of todos let i=index;" 
-            [todo]="todo"
-            [index]="i"
-            (checkedItem)="doneEdit($event)"
-            (doubleClickedItem)="editTodo($event)"
-            (canceledItem)="cancelEdit($event)"
-            (deletedItem)="deleteTodo($event)"
-        >
+<div [dir]="direction" class="todos bg-white">
+    <div class="todos__list">
+        <app-todo-item *ngFor="let todo of todos let i=index;" [todo]="todo" [index]="i"
+            (checkedItem)="doneEdit($event)" (doubleClickedItem)="editTodo($event)" (canceledItem)="cancelEdit($event)"
+            (deletedItem)="deleteTodo($event)">
 
         </app-todo-item>
 
@@ -26,17 +24,17 @@
         <a href="#" title="Close" class="modal-close" (click)="hidePopup()">Close</a>
         <h1>Add New Todo</h1>
         <form [formGroup]="validInput" (ngSubmit)="addTodoValid()" class="add-form">
-            <input class="add-todo-input" type="text" formControlName="todoName" name="todoName" placeholder="Add new todo..."
-                [(ngModel)]="todoTitle" (keyup.enter)="addTodo()"  minlength="4" required appAutoFocus />
+            <input class="add-todo-input" type="text" formControlName="todoName" name="todoName"
+                placeholder="Add new todo..." [(ngModel)]="todoTitle" (keyup.enter)="addTodo()" minlength="4" required
+                appAutoFocus />
 
             <button [disabled]="!validInput.valid" class="add-btn" (click)="addTodo();">Add New</button>
 
-            <div *ngIf="isValidInput('todoName')"
-            class="alert alert-danger">
-            <div *ngIf="validInput.controls['todoName'].errors.required">
-                Todo name is required at least 4 characters.
+            <div *ngIf="isValidInput('todoName')" class="alert alert-danger">
+                <div *ngIf="validInput.controls['todoName'].errors.required">
+                    Todo name is required at least 4 characters.
+                </div>
             </div>
-          </div>
         </form>
 
     </div>

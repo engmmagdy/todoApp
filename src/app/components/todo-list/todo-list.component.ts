@@ -15,10 +15,12 @@ export class TodoListComponent implements OnInit {
   modalPopup: boolean;
   beforeEditCach: string;
   validInput: FormGroup;
+  direction: string;
 
   constructor(private apiService: APIService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.direction = 'ltr';
     this.beforeEditCach = '';
     this.todoTitle = '';
     this.todoId = 8;
@@ -30,11 +32,19 @@ export class TodoListComponent implements OnInit {
     this.initForm();
   }
 
+  directionCheck(event): void {
+    const checkBox = event.target.checked;
+    if (checkBox !== true) {
+      this.direction = 'ltr';
+    } else { this.direction = 'rtl'; }
+  }
+
   getLocalStorageTodo(): void {
     if (localStorage.getItem('todos') !== null) {
       this.todos = JSON.parse(localStorage.getItem('todos'));
     }
   }
+
   setLocalStorage(): void {
     localStorage.setItem('todos',
       JSON.stringify(this.todos)
